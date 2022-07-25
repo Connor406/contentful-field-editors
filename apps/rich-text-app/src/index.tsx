@@ -10,7 +10,7 @@ init((sdk: FieldExtensionSDK) => {
     render(
       <>
         <GlobalStyles />
-        {renderRichTextDialog(sdk)}
+        {renderRichTextDialog(sdk as any)}
       </>,
       document.getElementById('root')
     );
@@ -18,7 +18,7 @@ init((sdk: FieldExtensionSDK) => {
     render(
       <>
         <GlobalStyles />
-        <RichTextEditor sdk={sdk} />
+        <RichTextEditor isInitiallyDisabled={false} sdk={sdk as any} />
       </>,
       document.getElementById('root')
     );

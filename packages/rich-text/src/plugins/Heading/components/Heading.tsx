@@ -29,7 +29,10 @@ const styles = {
       font-size: 1rem;
     `,
     [BLOCKS.HEADING_6]: css`
-      font-size: 0.875rem;
+      font-size: ${tokens.fontSizeL};
+      border: 1px solid gray;
+      padding: 5px 10px;
+      text-align: center;
     `,
   },
   headings: {
@@ -54,7 +57,10 @@ const styles = {
       font-size: 1.125rem;
     `,
     [BLOCKS.HEADING_6]: css`
-      font-size: 1rem;
+      font-size: ${tokens.fontSizeL};
+      border: 1px solid gray;
+      padding: 5px 10px;
+      text-align: center;
     `,
   },
 };
@@ -76,5 +82,5 @@ export const HeadingComponents = {
   [BLOCKS.HEADING_3]: React.memo(createHeading('h3', BLOCKS.HEADING_3)),
   [BLOCKS.HEADING_4]: React.memo(createHeading('h4', BLOCKS.HEADING_4)),
   [BLOCKS.HEADING_5]: React.memo(createHeading('h5', BLOCKS.HEADING_5)),
-  [BLOCKS.HEADING_6]: React.memo(createHeading('h6', BLOCKS.HEADING_6)),
+  [BLOCKS.HEADING_6]: React.memo(createHeading('button', BLOCKS.HEADING_6)),
 };

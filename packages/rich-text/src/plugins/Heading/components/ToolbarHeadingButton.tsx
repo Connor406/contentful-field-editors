@@ -41,7 +41,10 @@ const styles = {
       font-size: 1rem;
     `,
     [BLOCKS.HEADING_6]: css`
-      font-size: 0.875rem;
+      font-size: ${tokens.fontSizeL};
+      border: 1px solid gray;
+      padding: 5px 10px;
+      text-align: center;
     `,
   },
 };
@@ -53,7 +56,7 @@ const LABELS = {
   [BLOCKS.HEADING_3]: 'Heading 3',
   [BLOCKS.HEADING_4]: 'Heading 4',
   [BLOCKS.HEADING_5]: 'Heading 5',
-  [BLOCKS.HEADING_6]: 'Heading 6',
+  [BLOCKS.HEADING_6]: 'Button',
 };
 
 export interface ToolbarHeadingButtonProps {
