@@ -22,6 +22,7 @@ import { createListPlugin } from './List';
 import { createMarksPlugin } from './Marks';
 import { createNormalizerPlugin } from './Normalizer';
 import { createParagraphPlugin } from './Paragraph';
+import { createButtonPlugin } from './Button';
 import { createPasteHTMLPlugin } from './PasteHTML';
 import { createQuotePlugin } from './Quote';
 import { createSelectOnBackspacePlugin } from './SelectOnBackspace';
@@ -49,6 +50,7 @@ export const getPlugins = (
 
   // Block Elements
   createParagraphPlugin(),
+  createButtonPlugin(),
   createListPlugin(),
   createHrPlugin(),
   createHeadingPlugin(),

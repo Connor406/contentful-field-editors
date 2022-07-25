@@ -6,11 +6,15 @@ import { GlobalStyles } from '@contentful/f36-components';
 
 init((sdk: FieldExtensionSDK) => {
   sdk.window.startAutoResizer();
+  const v = sdk.field.validations[1].enabledNodeTypes || [];
+  sdk.field.validations[1].enabledNodeTypes = [...v, 'button'];
+  console.log(sdk);
+
   if (sdk.location.is(locations.LOCATION_DIALOG)) {
     render(
       <>
         <GlobalStyles />
-        {renderRichTextDialog(sdk)}
+        {renderRichTextDialog(sdk as any)}
       </>,
       document.getElementById('root')
     );
@@ -18,7 +22,7 @@ init((sdk: FieldExtensionSDK) => {
     render(
       <>
         <GlobalStyles />
-        <RichTextEditor sdk={sdk} />
+        <RichTextEditor isInitiallyDisabled={false} sdk={sdk as any} />
       </>,
       document.getElementById('root')
     );

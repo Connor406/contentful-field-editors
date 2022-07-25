@@ -63,6 +63,7 @@ export class FieldConnector<ValueType> extends React.Component<
       disabled: props.isInitiallyDisabled,
       errors: [],
     };
+    console.log(this.props.field.validations);
   }
 
   unsubscribeErrors: Function | null = null;
@@ -98,6 +99,7 @@ export class FieldConnector<ValueType> extends React.Component<
   componentDidMount() {
     const { field } = this.props;
     this.unsubscribeErrors = field.onSchemaErrorsChanged((errors: ValidationError[]) => {
+      console.log('🤠🤠', errors);
       this.setState({
         errors: errors || [],
       });

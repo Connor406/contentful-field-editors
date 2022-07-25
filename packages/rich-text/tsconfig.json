@@ -1,10 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src", "types"],
+  "exclude": ["build/**/*"],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "rootDir": "./src",
+    "outDir": "./build",
     "baseUrl": "./",
     "paths": {
       "*": ["src/*", "node_modules/*"]
@@ -16,6 +18,6 @@
     "resolveJsonModule": true
   },
   "linterOptions": {
-    "exclude": ["src/**"]
+    "exclude": ["src/**", "build/**/*"]
   }
 }

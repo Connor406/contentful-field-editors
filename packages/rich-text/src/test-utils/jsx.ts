@@ -90,6 +90,7 @@ export const jsx = createHyperscript({
     hli: { type: BLOCKS.LIST_ITEM, data: {} },
     hol: { type: BLOCKS.OL_LIST, data: {} },
     hp: { type: BLOCKS.PARAGRAPH, data: {} },
+    hbutton: { type: BLOCKS.BUTTON, data: {} },
     htable: { type: BLOCKS.TABLE, data: {} },
     htd: { type: BLOCKS.TABLE_CELL, data: {} },
     hth: { type: BLOCKS.TABLE_HEADER_CELL, data: {} },

@@ -5,7 +5,6 @@ import { ChevronDownIcon } from '@contentful/f36-icons';
 import tokens from '@contentful/f36-tokens';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { css, cx } from 'emotion';
-
 import { useContentfulEditor } from '../../../ContentfulEditorProvider';
 import {
   getElementFromCurrentSelection,
@@ -43,11 +42,16 @@ const styles = {
     [BLOCKS.HEADING_6]: css`
       font-size: 0.875rem;
     `,
+    [BLOCKS.BUTTON]: css`
+      font-size: 1rem;
+      border: 1px solid grey;
+    `,
   },
 };
 
 const LABELS = {
   [BLOCKS.PARAGRAPH]: 'Normal text',
+  [BLOCKS.BUTTON]: 'Button',
   [BLOCKS.HEADING_1]: 'Heading 1',
   [BLOCKS.HEADING_2]: 'Heading 2',
   [BLOCKS.HEADING_3]: 'Heading 3',
@@ -67,6 +71,7 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
   const [selected, setSelected] = React.useState<string>(BLOCKS.PARAGRAPH);
 
   React.useEffect(() => {
+    // console.log('SELECTED: ', selected, 'EDITOR', editor?.selection);
     if (!editor?.selection) return;
 
     const [element] = getElementFromCurrentSelection(editor);
@@ -80,7 +85,7 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
       Object.keys(LABELS).map((nodeType) => [nodeType, isNodeTypeEnabled(sdk.field, nodeType)])
     );
     const someHeadingsEnabled = Object.values(nodeTypesByEnablement).filter(Boolean).length > 0;
-    return [nodeTypesByEnablement, someHeadingsEnabled];
+    return [{ ...nodeTypesByEnablement, [BLOCKS.BUTTON]: true }, someHeadingsEnabled];
   }, [sdk.field]);
 
   function handleOnSelectItem(type: BLOCKS): (event: React.MouseEvent<HTMLButtonElement>) => void {
@@ -107,7 +112,9 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
       };
 
       const isActive = isBlockSelected(editor, type);
-      editor.tracking.onToolbarAction(isActive ? 'remove' : 'insert', { nodeType: type });
+      editor.tracking.onToolbarAction(isActive ? 'remove' : 'insert', {
+        nodeType: type || 'button',
+      });
 
       toggleElement(editor, { activeType: type, inactiveType: type });
     };
@@ -131,8 +138,9 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
       <Menu.List testId="dropdown-heading-list">
         {' '}
         {Object.keys(LABELS)
-          .map(
-            (nodeType) =>
+          .map((nodeType) => {
+            // console.log({ nodeType });
+            return (
               nodeTypesByEnablement[nodeType] && (
                 <Menu.Item
                   key={nodeType}
@@ -145,7 +153,8 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
                   </span>
                 </Menu.Item>
               )
-          )
+            );
+          })
           .filter(Boolean)}
       </Menu.List>
     </Menu>

@@ -10,7 +10,12 @@ export const VALIDATIONS = {
   ENABLED_MARKS: 'enabledMarks',
   ENABLED_NODE_TYPES: 'enabledNodeTypes',
 };
-export const DEFAULT_ENABLED_NODE_TYPES = [BLOCKS.DOCUMENT, BLOCKS.PARAGRAPH, 'text'];
+export const DEFAULT_ENABLED_NODE_TYPES = [
+  BLOCKS.DOCUMENT,
+  BLOCKS.PARAGRAPH,
+  BLOCKS.BUTTON,
+  'text',
+];
 
 export const VALIDATABLE_NODE_TYPES = ([] as Array<BLOCKS | INLINES>)
   .concat(TOP_LEVEL_BLOCKS)
@@ -25,7 +30,8 @@ const getRichTextValidation = (field, validationType) =>
   )(field.validations);
 
 const isFormattingOptionEnabled = (field, validationType, nodeTypeOrMark) => {
-  const enabledFormattings = getRichTextValidation(field, validationType);
+  const enabled = getRichTextValidation(field, validationType);
+  const enabledFormattings = [...enabled, 'button'];
 
   // TODO: In the future, validations will always be opt-in. In that case
   // we don't need this step.

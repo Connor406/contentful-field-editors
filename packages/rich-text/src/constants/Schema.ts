@@ -25,6 +25,13 @@ export default {
         },
       ],
     },
+    [BLOCKS.BUTTON]: {
+      nodes: [
+        {
+          match: [...inlines, { object: 'text' }],
+        },
+      ],
+    },
     [BLOCKS.HEADING_1]: {
       nodes: [
         {

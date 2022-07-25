@@ -13,6 +13,9 @@ const styles = {
     [BLOCKS.PARAGRAPH]: css`
       font-size: ${tokens.fontSizeL};
     `,
+    [BLOCKS.BUTTON]: css`
+      font-size: ${tokens.fontSizeL};
+    `,
     [BLOCKS.HEADING_1]: css`
       font-size: 1.625rem;
     `,
